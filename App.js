@@ -1,21 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-//
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import * as React from 'react';
+import 'react-native-gesture-handler';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from '@react-navigation/stack';
+import RegisterScreen from './src/screens/RegisterScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import LoadingScreen from './src/screens/LoadingScreen'
+import MainStackNavigator from './src/navigation/MainStackNavigator';
+
+import * as firebase from 'firebase';
+import firebaseconfig from './firebase';
+
+// initialize firebase
+firebase.initializeApp(firebaseconfig);
+
+export default function App(){
+  return <MainStackNavigator/>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const AppStack = createStackNavigator({
+//   Home: HomeScreen
+// })
+
+// const AuthStack = createStackNavigator({
+//   Login: LoginScreen,
+//   Register: RegisterScreen
+// })
+
+// const MyNavigator = createSwitchNavigator({
+//   routeNameOne: LoadingScreen
+// });
