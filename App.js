@@ -6,7 +6,7 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import LoadingScreen from './src/screens/LoadingScreen'
-import MainStackNavigator from './src/navigation/MainStackNavigator';
+import LoadingNavigator from './src/navigation/LoadingNavigator';
 
 import * as firebase from 'firebase';
 import firebaseconfig from './firebase';
@@ -15,7 +15,7 @@ import firebaseconfig from './firebase';
 firebase.initializeApp(firebaseconfig);
 
 export default function App(){
-  return <MainStackNavigator/>
+  return <LoadingNavigator/>
 }
 
 // const AppStack = createStackNavigator({
