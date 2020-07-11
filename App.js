@@ -1,31 +1,38 @@
-import * as React from 'react';
 import 'react-native-gesture-handler';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import React, { useEffect, useState } from 'react'
+import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
-import RegisterScreen from './src/screens/RegisterScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import LoadingScreen from './src/screens/LoadingScreen'
+import {RegistrationScreen, LoadingScreen, LoginScreen, HomeScreen} from './src/screens'
+import { NavigationContainer } from '@react-navigation/native';
+import {decode, encode} from 'base-64'
+if (!global.btoa) { global.btoa = encode }
+if (!global.atob) {global.atob = decode }
 
-// Navigations
-import LoadingNavigator from './src/navigation/LoadingNavigator';
-import HomeNavigator from './src/navigation/HomeNavigator'
-import LoginNavigator from './src/navigation/LoginNavigator'
-
-import * as firebase from 'firebase';
-import firebaseconfig from './firebase_config';
 
 // initialize firebase
 //firebase.initializeApp(firebaseconfig);
 
+const Stack = createStackNavigator();
 
-export default createAppContainer(
-  createSwitchNavigator({
-    Loading: LoadingScreen,
-    App: HomeNavigator,
-    Auth: LoginNavigator // fix up proper screens + navigators
-  
-  },{
-    initialRouteName: "Loading"
-  })
-)
+export default function App() {
+
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null)
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        { user ? (
+          <Stack.Screen name="Home">
+            {props => <HomeScreen {...props} extraData={user} />}
+          </Stack.Screen>
+        ): (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegistrationScreen} />
+          </>
+        )}
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
