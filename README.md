@@ -3,4 +3,4 @@
 
 To get this app running.
 
-hit it with a yarn start ( if you have this tool installed, expo start also works)
+Expo start
