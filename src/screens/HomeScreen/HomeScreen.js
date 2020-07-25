@@ -13,9 +13,9 @@ export default function HomeScreen() {
 
     const entityRef = firebase.firestore().collection('entities')
 
-    return(
-        <View style={styles.container}>
-            <Text>Loading..</Text>
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>Post something in order for your home screen to populate</Text>
         </View>
-    )
- }
+      );
+    }

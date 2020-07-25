@@ -4,8 +4,8 @@ import { firebase } from './src/firebase/firebase_config'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LoginScreen, HomeScreen, RegistrationScreen, UserFeedScreen, SearchScreen, NotificationScreen, ProfileScreen } from './src/screens'
-import { Ionicons, MaterialCommunityIcons, FontAwesome, Foundation } from '@expo/vector-icons';
+import { LoginScreen, HomeScreen, RegistrationScreen, UserFeedScreen, SearchScreen, NotificationScreen, ProfileScreen,PostScreen } from './src/screens'
+import { Ionicons, MaterialCommunityIcons, FontAwesome, Foundation, EvilIcons, Entypo } from '@expo/vector-icons';
 import {decode, encode} from 'base-64'
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
@@ -52,16 +52,29 @@ export default function App() {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = <MaterialCommunityIcons name="soccer-field" size={30} color="#009933" />
+            iconName = focused
+            ? <MaterialCommunityIcons name="home" size={30} color="black" />
+            : <MaterialCommunityIcons name="home-outline" size={30} color="black" /> 
           } else if (route.name === 'Search') {
-            iconName = <Foundation name="page-search" size={30} color="#ffa31a" />
+            iconName = focused
+           ? iconName = <FontAwesome name="search" size={30} color="black" />
+           : iconName = <EvilIcons name="search" size={30} color="black" />
           }
           else if (route.name == 'Notifications'){
-            iconName = <MaterialCommunityIcons name="cellphone-message" size={24} color="#ff6699" />
-          }
+            iconName = focused
+            ? iconName = <Entypo name="heart" size={30} color="black" />
+            : iconName = <Entypo name="heart-outlined" size={30} color="black" />
+           }
           else if (route.name == 'Profile'){
-            iconName = <MaterialCommunityIcons name="account-badge-outline" size={30} color="#0066ff" />
-          }
+            iconName = focused
+            ? iconName = <MaterialCommunityIcons name="account" size={30} color="black" />
+            : iconName = <MaterialCommunityIcons name="account-outline" size={30} color="black" />
+           }
+           else if (route.name == 'Post'){
+            iconName = focused
+            ? iconName = <MaterialCommunityIcons name="account" size={30} color="black" />
+            : iconName = <MaterialCommunityIcons name="account-outline" size={30} color="black" />
+           }
 
           // You can return any component that you like here!
           return iconName
@@ -76,6 +89,7 @@ export default function App() {
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Notifications" component={NotificationScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Post" component={PostScreen}/>
 
     </Tab.Navigator>
   </NavigationContainer>
