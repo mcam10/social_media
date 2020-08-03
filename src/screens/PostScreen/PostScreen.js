@@ -1,107 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { firebase } from '../../firebase/firebase_config'
+import { Camera } from 'expo-camera';
+import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
 
+
+
 export default function PostScreen({navigation}) {
-    const [fullName, setFullName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-
-    const onFooterLinkPress = () => {
-        navigation.navigate('Login')
-    }
-
-    const onRegisterPress = () => {
-         if (password !== confirmPassword){
-             alert('Passwords dont match')
-             return
-         }
-         firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid
-                const data = {
-                    id: uid,
-                    email,
-                    fullName,
-                };
-                const usersRef = firebase.firestore().collection('users')
-                usersRef
-                    .doc(uid)
-                    .set(data)
-                    .then(() => {
-                        navigation.navigate('Home', {user: data})
-                    })
-                    .catch((error) => {
-                        alert(error)
-                    });
-            })
-            .catch((error) => {
-                alert(error)
-            })
-
-    }
-
     return (
+        <SafeAreaView style={styles.container}>
+            <View style={styles.header}>
+            <TouchableOpacity>
+                <Ionicons name="md-arrow-back" size={24} color="black"></Ionicons>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                     <Text style={{ fontWeight: "800"}}>Post</Text>
+                 </TouchableOpacity>
+            </View>
+            <View style={styles.top}>
+                <TextInput
+             autoFocus={ true }
+             numberOfLines={ 2 }
+             style={{ height: 20,  borderColor: 'black', borderWidth: 2,flexDirection:"row-reverse" ,borderBottomWidth: 2}}
+             placeholder="Want to share something?"
+            ></TextInput>
+          </View>
+           
         <View style={styles.container}>
-            <KeyboardAwareScrollView
-                style={{ flex: 1, width: '100%' }}
-                keyboardShouldPersistTaps="always">
-                <Image
-                    style={styles.logo}
-                    source={require('../../../assets/icon.png')}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Full Name'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setFullName(text)}
-                    value={fullName}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='E-mail'
-                    placeholderTextColor="#aaaaaa"
-                    onChangeText={(text) => setEmail(text)}
-                    value={email}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#aaaaaa"
-                    secureTextEntry
-                    placeholder='Password'
-                    onChangeText={(text) => setPassword(text)}
-                    value={password}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#aaaaaa"
-                    secureTextEntry
-                    placeholder='Confirm Password'
-                    onChangeText={(text) => setConfirmPassword(text)}
-                    value={confirmPassword}
-                    underlineColorAndroid="transparent"
-                    autoCapitalize="none"
-                />
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => onRegisterPress()}>
-                    <Text style={styles.buttonTitle}>Create account</Text>
-                </TouchableOpacity>
-                <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Already got an account? <Text onPress={onFooterLinkPress} style={styles.footerLink}>Log in</Text></Text>
-                </View>
-            </KeyboardAwareScrollView>
+          <View style={styles.middle} />
+          <View style={styles.bottom} />
         </View>
-    )
-}
+     </SafeAreaView>
+      );
+  }
+
+// export default function PostScreen({navigation}) {
+//     return(
+//         <SafeAreaView style={styles.container}>
+//             <View style={styles.header}>
+//                 <TouchableOpacity>
+//                     <Ionicons name="md-arrow-back" size={24} color="black"></Ionicons>
+//                 </TouchableOpacity>
+//                 <TouchableOpacity>
+//                     <Text style={{ fontWeight: "800"}}>Post</Text>
+//                 </TouchableOpacity>
+//             </View>
+//             <View styles={styles.inputontainer}>
+//                 <Image source={require("../../../assets/tempAvatar.jpg")} styles={styles.avatar} resizeMode='contain'></Image>
+//                 <TextInput
+//                     autoFocus={ true }
+//                     multiline={ true }
+//                     numberOfLines={ 12 }
+//                     style={{ height: 40, borderColor: 'grey', borderWidth: 1 }}
+//                     placeholder="Want to share something?"
+//                 ></TextInput>
+//             </View>
+//             <TouchableOpacity style={styles.photo}>
+//                 <Ionicons name="md-camera" size={32} color="grey"></Ionicons>
+//             </TouchableOpacity>
+//         </SafeAreaView>
+//     )
+//   }

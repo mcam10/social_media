@@ -72,8 +72,8 @@ export default function App() {
            }
            else if (route.name == 'Post'){
             iconName = focused
-            ? iconName = <MaterialCommunityIcons name="account" size={30} color="black" />
-            : iconName = <MaterialCommunityIcons name="account-outline" size={30} color="black" />
+            ? iconName = <MaterialCommunityIcons name="video" size={30} color="black" />
+            : iconName = <MaterialCommunityIcons name="video-outline" size={30} color="black" />
            }
 
           // You can return any component that you like here!
@@ -87,10 +87,9 @@ export default function App() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Post" component={PostScreen}/>
       <Tab.Screen name="Notifications" component={NotificationScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Post" component={PostScreen}/>
-
     </Tab.Navigator>
   </NavigationContainer>
 );
