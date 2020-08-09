@@ -17,6 +17,20 @@ export default StyleSheet.create({
           borderBottomWidth: 1,
           borderBottomColor: "#D8D9DB"
     },
+    Postheader:{
+      flexDirection: "row",
+      justifyContent: "space-between",
+       paddingHorizontal: 10,
+       paddingVertical: 2,
+       borderBottomColor: "#D8D9DB"
+ },
+ header:{
+  flexDirection: "row",
+  justifyContent: "space-between",
+   paddingHorizontal: 12,
+   paddingVertical: 5,
+   borderBottomColor: "#D8D9DB"
+},
     top: {
         flexDirection: "row",
         alignSelf: "flex-start",
@@ -39,5 +53,11 @@ export default StyleSheet.create({
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
     },
+    photo:{
+      marginLeft: 225,
+      alignItems: "flex-end",
+      marginHorizontal: 32
+    
+    }
   });
 

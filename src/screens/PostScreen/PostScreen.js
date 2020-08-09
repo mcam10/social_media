@@ -18,7 +18,7 @@ export default function PostScreen({navigation}) {
                      <Text style={{ fontWeight: "900"}}>Post</Text>
                  </TouchableOpacity>
             </View>
-            <View style={styles.header}>
+            <View style={styles.Postheader}>
             <TouchableOpacity>
               <View>
               <Image
@@ -35,13 +35,18 @@ export default function PostScreen({navigation}) {
              style={{ flex: 1}}
              placeholder="Want to share something?"
             ></TextInput>
+              <View style={styles.photo}>
+              </View>
                  </TouchableOpacity>
             </View>
-                
-           
+      
+            
         <View style={styles.container}>
-          
-         
+          <View style={styles.photo}>
+          <Ionicons name="md-camera" size={24} color="grey"></Ionicons>
+
+              </View> 
+       
         </View>
      </SafeAreaView>
       );
