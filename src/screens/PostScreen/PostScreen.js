@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Image, Text, TextInput, Button, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TextInput, Button, TouchableOpacity, View, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
@@ -10,11 +10,36 @@ import * as Permissions from 'expo-permissions';
 
 
 export default function PostScreen({ navigation, route }){
-
+    // adding text state
     const [postText, setPostText] = React.useState('');
+    // adding image state
+    const [selectedImage, setSelectedImage] = React.useState(null);
 
-    const [postImage, setPostImage] = React.useState(null);
+  let openImagePickerAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
 
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+
+    setSelectedImage({ localUri: pickerResult.uri });
+  };
+
+  if (selectedImage !== null) {
+    return (
+      <View style={styles.container}>
+        <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+      </View>
+    );
+  }
+ 
 
     return (
         <SafeAreaView style={styles.container}>
@@ -27,7 +52,7 @@ export default function PostScreen({ navigation, route }){
                      onPress={() => {
                             // pass params back to home sceeen
                             navigation.navigate('Home', {post: postText});
-                            this.postText = ''
+                            
                     }}
                      >Post</Text>
                  </TouchableOpacity>
@@ -57,50 +82,17 @@ export default function PostScreen({ navigation, route }){
                  </TouchableOpacity>
             </View>
         <View style={styles.container}>
-            <TouchableOpacity>
-            <View style={styles.photo} onPress={() => {
-                // launch camera in order to post pic or video
-            }}>
-          <Ionicons name="md-camera" size={24} color="grey"></Ionicons>
-              </View>
+            <TouchableOpacity onPress={openImagePickerAsync} style={styles.photo}>
+                <Ionicons name="md-camera" size={24} color="grey"></Ionicons>
             </TouchableOpacity>
         </View>
      </SafeAreaView>
     );
   }
  
-
-function componentDidMount() {
-      getPermissionAsync();
-}
-
-const getPermissionAsync = async () => {
-        if (Constants.platform.ios) {
-          const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-          if (status !== 'granted') {
-            alert('Sorry, we need camera roll permissions to make this work!');
-          }
-        }
-      }
+// this is for clss based componets... need to use useEffect for function components
 
 
-const _pickImage = async () => {
-        try {
-          let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-          });
-          if (!result.cancelled) {
-            this.setState({ image: result.uri });
-          }
-    
-          console.log(result)
-        } catch (E) {
-          console.log(E)
-        }
-    }
 
 
 

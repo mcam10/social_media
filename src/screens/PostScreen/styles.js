@@ -1,3 +1,4 @@
+import { HeaderTitle } from '@react-navigation/stack';
 import { preventAutoHide } from 'expo/build/launch/SplashScreen';
 import { StyleSheet, ImageBackground } from 'react-native';
 
@@ -52,6 +53,12 @@ export default StyleSheet.create({
       borderWidth: 5,
       borderBottomLeftRadius: 20,
       borderBottomRightRadius: 20,
+    },
+    thumbnail:{
+
+      width: 300,
+      height: 300,
+      resizeMode: 'contain'
     },
     photo:{
       marginLeft: 225,
