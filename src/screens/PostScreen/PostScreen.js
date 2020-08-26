@@ -32,13 +32,13 @@ export default function PostScreen({ navigation, route }){
     setSelectedImage({ localUri: pickerResult.uri });
   };
 
-  if (selectedImage !== null) {
-    return (
-      <View style={styles.container}>
-        <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-      </View>
-    );
-  }
+  // if (selectedImage !== null) {
+  //   return (
+  //     <View style={styles.bottom}>
+  //       <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+  //     </View>
+  //   );
+  // }
  
 
     return (
@@ -81,11 +81,15 @@ export default function PostScreen({ navigation, route }){
               </View>
                  </TouchableOpacity>
             </View>
-        <View style={styles.container}>
+        <View style={styles.Imagecontainer }>
             <TouchableOpacity onPress={openImagePickerAsync} style={styles.photo}>
                 <Ionicons name="md-camera" size={24} color="grey"></Ionicons>
             </TouchableOpacity>
         </View>
+        <View style={{ marginHorizontal: 10, marginTop: 20, height: 400} }>
+                <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
+        </View> 
+
      </SafeAreaView>
     );
   }

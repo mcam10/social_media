@@ -9,6 +9,12 @@ export default StyleSheet.create({
       padding: 19,
       margin: 10,
     },
+    Imagecontainer: {
+      flex: 1,
+      justifyContent: "space-between",
+      padding: 10,
+      margin: 12,
+    },
    
     header:{
          flexDirection: "row",
@@ -32,14 +38,12 @@ export default StyleSheet.create({
    paddingVertical: 5,
    borderBottomColor: "#D8D9DB"
 },
-    top: {
-        flexDirection: "row",
-        alignSelf: "flex-start",
-        width: 50,
-        height: 50,
-        borderRadius: 100/2,
-        
-      
+ top:{
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    width: 50,
+    height: 50,
+    borderRadius: 100/2,
     },
     
     middle: {
@@ -55,16 +59,13 @@ export default StyleSheet.create({
       borderBottomRightRadius: 20,
     },
     thumbnail:{
-
-      width: 300,
-      height: 300,
-      resizeMode: 'contain'
+      width: "100%",
+      height: "100%",
     },
     photo:{
       marginLeft: 225,
       alignItems: "flex-end",
       marginHorizontal: 32
-    
     }
   });
 
