@@ -1,10 +1,12 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render, fireEvent, getByTestId, screen } from '@testing-library/react'
 
 import App from './App';
 
-test('renders correctly', () => {
-  const tree = renderer.create(< App />).toJSON();
-  expect(tree).toMatchSnapshot();
+describe('App', () => {
+  test('renders App component', () => {
+	render(<App />);
+  }); 
+});
 
-})
+
