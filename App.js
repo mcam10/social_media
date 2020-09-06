@@ -7,6 +7,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LoginScreen, HomeScreen, RegistrationScreen, UserFeedScreen, SearchScreen, NotificationScreen, ProfileScreen,PostScreen } from './src/screens'
 import { Ionicons, MaterialCommunityIcons, FontAwesome, Foundation, EvilIcons, Entypo } from '@expo/vector-icons';
 import {decode, encode} from 'base-64'
+
+
 if (!global.btoa) {  global.btoa = encode }
 if (!global.atob) { global.atob = decode }
 

@@ -32,13 +32,24 @@ export default function PostScreen({ navigation, route }){
     setSelectedImage({ localUri: pickerResult.uri });
   };
 
-  // if (selectedImage !== null) {
-  //   return (
-  //     <View style={styles.bottom}>
-  //       <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-  //     </View>
-  //   );
-  // }
+
+const renderImage = () =>{
+  if (selectedImage !== null) {
+    return (
+      <View style={styles.Photocontainer}>
+        <Image
+          source={{ uri: selectedImage.localUri }}
+          style={styles.bottom}
+        />
+      </View>
+    );
+  }
+}
+useEffect(() => {
+
+  renderImage();
+
+});
  
 
     return (
@@ -52,7 +63,6 @@ export default function PostScreen({ navigation, route }){
                      onPress={() => {
                             // pass params back to home sceeen
                             navigation.navigate('Home', {post: postText});
-                            
                     }}
                      >Post</Text>
                  </TouchableOpacity>
@@ -86,16 +96,10 @@ export default function PostScreen({ navigation, route }){
                 <Ionicons name="md-camera" size={24} color="grey"></Ionicons>
             </TouchableOpacity>
         </View>
-        <View style={{ marginHorizontal: 10, marginTop: 20, height: 400} }>
-                <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-        </View> 
-
      </SafeAreaView>
     );
   }
  
-// this is for clss based componets... need to use useEffect for function components
-
 
 
 

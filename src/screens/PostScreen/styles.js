@@ -12,8 +12,12 @@ export default StyleSheet.create({
     Imagecontainer: {
       flex: 1,
       justifyContent: "space-between",
-      padding: 10,
       margin: 12,
+    },
+      Photocontainer: {
+        flex: 1, 
+        flexDirection: 'column',
+        justifyContent: 'center',
     },
    
     header:{
@@ -54,8 +58,8 @@ export default StyleSheet.create({
     bottom: {
       flex: 0.3,
       backgroundColor: "pink",
-      borderWidth: 5,
-      borderBottomLeftRadius: 20,
+      borderWidth: 10,
+      borderBottomLeftRadius: 30,
       borderBottomRightRadius: 20,
     },
     thumbnail:{
