@@ -9,7 +9,8 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "testEnvironment": "jsdom"
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
@@ -35,17 +36,19 @@
     "react-native-reanimated": "~1.9.0",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
-    "react-native-testing-library": "^6.0.0",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.4.0",
     "react-scripts": "^3.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@testing-library/react": "^11.0.2",
+    "babel-jest": "^26.3.0",
     "babel-preset-expo": "~8.1.0",
     "firebase-mock": "^2.3.2",
-    "jest-expo": "^38.0.2",
-    "react-test-renderer": "^16.13.1"
+    "jest-expo": "^38.0.2"
   },
   "private": true
 }
