@@ -10,7 +10,10 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "setupFiles": [
+    	"social_media/jest/setup.js"
+    ],
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
