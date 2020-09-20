@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Image, Text, TextInput, Button, TouchableOpacity, View, Alert } from 'react-native'
+import { Keyboard, Image, Text, TextInput, Button, TouchableOpacity, View, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
@@ -77,19 +77,19 @@ useEffect(() => {
             </View>
             </TouchableOpacity>
             <TouchableOpacity>
-            <TextInput
-             autoFocus={ true }
-             multiline={true}
-             numberOfLines={ 4 }
-             style={{ flex: 1}}
-             value={postText}
-             onChangeText={setPostText}
-             placeholder="Want to share something?"
-             blurOnSubmit = {true}
-            ></TextInput>
+               <TextInput
+                autoFocus={ true }
+                multiline={true}
+                numberOfLines={ 4 }
+                style={{ flex: 1}}
+                value={postText}
+                onChangeText={setPostText}
+                placeholder="Want to share something?"
+                blurOnSubmit={true}
+	        onSubmitEditing={Keyboard.dismiss}/>
               <View style={styles.photo}>
               </View>
-                 </TouchableOpacity>
+            </TouchableOpacity>
             </View>
         <View style={styles.Imagecontainer }>
             <TouchableOpacity onPress={openImagePickerAsync} style={styles.photo}>
